@@ -1,20 +1,28 @@
 package pl.put.poznan.transformer.logic;
 
+import java.util.Arrays;
+
 /**
- * This is just an example to show that the logic should be outside the REST service.
+ * This the class that manages server's answers
  */
 public class TextTransformer {
+    private final String[] scenariusz;
 
-
-
-    private final String[] transforms;
-
-    public TextTransformer(String[] transforms){
-        this.transforms = transforms;
+    /**
+     * Prepares server to respond by storing user input in object.
+     * @param scenariusz
+     */
+    public TextTransformer(String[] scenariusz){
+        this.scenariusz = scenariusz;
     }
 
-    public String transform(String text){
-        // of course normally it would to something based on transforms
-        return text.toUpperCase();
+    /**
+     * This class returns server's response
+     * @param command String: User's request
+     * @return JSON formatted String
+     */
+    public String transform(String command){
+        String ans = IRequest.getRequest(command, scenariusz).run(scenariusz);
+        return "{ \"scenario\" : " + ArrToStringJson.wrapper(scenariusz) + ", \"response\" : " + ans + "}";
     }
 }
