@@ -5,6 +5,9 @@ import org.junit.Test;
 import pl.put.poznan.transformer.logic.CountStepsRequest;
 import pl.put.poznan.transformer.logic.IRequest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LogicTest {
 
     @Test
@@ -29,10 +32,22 @@ public class LogicTest {
         Assert.assertEquals(expected,response);
     }
 
-    /*@Test
+    
+
+    @Test
     public void validCountCountStepsRequestClass(){
         CountStepsRequest countStepsRequest = new CountStepsRequest();
+        String expected;
+        List<String> scenarioList = new ArrayList<String>();
 
-        Assert.assertEquals();
-    }*/
+        for(int i = 1; i < 25; i++) {
+            scenarioList.add("1");
+            String[] scenario = new String[scenarioList.size()];
+            scenario = scenarioList.toArray(scenario);
+
+            expected = "\"" + "Ilosc krokow jest rowna " + Integer.toString(i) + "\"";
+            Assert.assertEquals(expected, countStepsRequest.run(scenario));
+
+        }
+    }
 }
