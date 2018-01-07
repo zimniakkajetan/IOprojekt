@@ -32,7 +32,7 @@ public class LogicTest {
         Assert.assertEquals(expected,response);
     }
 
-    
+
 
     @Test
     public void validCountCountStepsRequestClass(){
@@ -49,5 +49,16 @@ public class LogicTest {
             Assert.assertEquals(expected, countStepsRequest.run(scenario));
 
         }
+    }
+
+    @Test
+    public void requestNameGETScenarioIRequest(){
+        String[] scenario = {"__GET__"};
+        String requestName = "policzkroki";
+        String response, expected;
+
+        expected = new NoRequest(requestName).getName();
+        response = IRequest.getRequest(requestName,scenario).getName();
+        Assert.assertEquals(expected,response);
     }
 }
