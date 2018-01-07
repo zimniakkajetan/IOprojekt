@@ -29,6 +29,10 @@ public class LogicTest {
         response = IRequest.getRequest("policzkroki",emptyScenario).getName();
         expected = new CountStepsRequest().getName();
         Assert.assertEquals(expected,response);
+
+        String strResponse = new CountStepsRequest().run(emptyScenario);
+        String strExpected = "\"" + "Ilosc krokow jest rowna " + Integer.toString(0) + "\"";
+        Assert.assertEquals(strExpected, strResponse);
     }
 
 
