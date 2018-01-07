@@ -1,9 +1,8 @@
 package pl.put.poznan.transformer.logic;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
-import pl.put.poznan.transformer.logic.CountStepsRequest;
-import pl.put.poznan.transformer.logic.IRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,17 +61,31 @@ public class LogicTest {
         Assert.assertEquals(expected,response);
     }
 
-    /*@Test // chyba nieprzydatne - powinno zwracac null, wazniejsza kwestia czy obiekt wyzej nie wysyla nulla - do pozniejszych testow
+    @Test // chyba nieprzydatne - powinno zwracac null, wazniejsza kwestia czy obiekt wyzej nie wysyla nulla - do pozniejszych testow
     public void nullInputArrToStringJson(){
         String[] input = null;
         ArrToStringJson arrToStringJson = new ArrToStringJson();
         Assert.assertNotNull(arrToStringJson.wrapper(input));
-    }*/
+    }
 
     @Test
     public void emptyInputArrToStringJson(){
         String[] input = {};
         ArrToStringJson arrToStringJson = new ArrToStringJson();
         Assert.assertNotNull(arrToStringJson.wrapper(input));
+    }
+
+    @Test
+    public void properConversionArrToStringJSonClass(){
+        String[] input = {"abc", "efg"};
+        String expected;
+        String actual;
+
+        Gson gson = new Gson();
+        expected = gson.toJson(input);
+        actual = ArrToStringJson.wrapper(input);
+        //System.out.println(actual.charAt(9));
+        //System.out.println(expected.charAt(9));
+        Assert.assertEquals(expected,actual); // Stringi nie sa rowne - oba konwertery dzialaja prawidlowo czy nie?
     }
 }
