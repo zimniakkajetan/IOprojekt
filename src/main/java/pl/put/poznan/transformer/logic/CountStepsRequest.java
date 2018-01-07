@@ -9,7 +9,7 @@ public class CountStepsRequest implements IRequest{
      * Returns name of request that this class is fulfilling
      * @return String: "policzkroki"
      */
-    public static String getName() {
+    public String getName() {
         return "policzkroki";
     }
 
