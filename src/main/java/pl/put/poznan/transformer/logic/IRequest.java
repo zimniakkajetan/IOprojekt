@@ -9,7 +9,11 @@ public interface IRequest {
      * @return IRequest: class that answers user's request
      */
     public static IRequest getRequest(String requestName, String[] data){
-        if(requestName.equals("policzkroki") && !data[0].equals("__GET__"))
+        boolean not_get = true;
+            if(data.length==1){
+                not_get = !data[0].equals("_GET_");
+        }
+        if(requestName.equals("policzkroki") && not_get)
             return new CountStepsRequest();
         return new NoRequest(requestName);
     }
