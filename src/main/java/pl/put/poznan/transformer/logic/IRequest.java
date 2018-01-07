@@ -13,5 +13,6 @@ public interface IRequest {
             return new CountStepsRequest();
         return new NoRequest(requestName);
     }
+    public String getName();
     public String run(String[] input);
 }
