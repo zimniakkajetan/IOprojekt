@@ -11,7 +11,7 @@ public interface IRequest {
     public static IRequest getRequest(String requestName, String[] data){
         boolean not_get = true;
             if(data.length==1){
-                not_get = !data[0].equals("_GET_");
+                not_get = !data[0].equals("__GET__");
         }
         if(requestName.equals("policzkroki") && not_get)
             return new CountStepsRequest();
