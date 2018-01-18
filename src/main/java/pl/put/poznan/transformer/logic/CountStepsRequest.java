@@ -9,10 +9,9 @@ public class CountStepsRequest implements IRequest{
      * Returns name of request that this class is fulfilling
      * @return String: "policzkroki"
      */
-    public static String getName() {
+    public String getName() {
         return "policzkroki";
     }
-
     /**
      * Returns answer of server when client wants to get amount of steps sent.
      * @param input Is the list of steps sent by the client
