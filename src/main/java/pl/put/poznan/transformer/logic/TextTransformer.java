@@ -23,8 +23,6 @@ public class TextTransformer {
      */
     public String transform(String command){
         IStep steps = new Scenario(Arrays.asList(scenariusz));
-        String display = steps.display();
-        System.out.println(display);
         String ans = IRequest.getRequest(command, steps).run(steps);
         return "{ \"scenario\" : " + ArrToStringJson.wrapper(scenariusz) + ", \"response\" : " + ans + "}";
     }
