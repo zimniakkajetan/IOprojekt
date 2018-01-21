@@ -22,8 +22,10 @@ public class TextTransformer {
      * @return JSON formatted String
      */
     public String transform(String command){
-        String ans = IRequest.getRequest(command, scenariusz).run(scenariusz);
-        //IStep scen2 = new Scenario(Arrays.asList(scenariusz));
+        IStep steps = new Scenario(Arrays.asList(scenariusz));
+        String display = steps.display();
+        System.out.println(display);
+        String ans = IRequest.getRequest(command, steps).run(steps);
         return "{ \"scenario\" : " + ArrToStringJson.wrapper(scenariusz) + ", \"response\" : " + ans + "}";
     }
 }

@@ -12,11 +12,11 @@ public class CountStepsTest {
         String[] emptyScenario = {};
         String response, expected;
 
-        response = IRequest.getRequest("policzkroki",emptyScenario).getName();
+        response = IRequest.getRequest("policzkroki",new Scenario(emptyScenario)).getName();
         expected = new CountStepsRequest().getName();
         Assert.assertEquals(expected,response);
 
-        String strResponse = new CountStepsRequest().run(emptyScenario);
+        String strResponse = new CountStepsRequest().run(new Scenario(emptyScenario));
         String strExpected = "\"" + "Ilosc krokow jest rowna " + Integer.toString(0) + "\"";
         Assert.assertEquals(strExpected, strResponse);
     }
@@ -33,7 +33,7 @@ public class CountStepsTest {
             scenario = scenarioList.toArray(scenario);
 
             expected = "\"" + "Ilosc krokow jest rowna " + Integer.toString(i) + "\"";
-            Assert.assertEquals(expected, countStepsRequest.run(scenario));
+            Assert.assertEquals(expected, countStepsRequest.run(new Scenario(scenario)));
 
         }
     }

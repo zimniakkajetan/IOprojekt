@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Step extends IStep {
     Step(List<String> scenario, String name, int depth){
+        substeps = new LinkedList<>();
         this.name = name;
         this.depth = depth;
         generate(scenario);
@@ -28,9 +29,11 @@ public class Step extends IStep {
 
     @Override
     public String display() {
-        String ret = new String(name);
+        String ret = this.getName();
+        if(name==null)ret="{null}";
+        ret+= "\n";
         for(IStep step : substeps){
-            ret += IStep.tab() + step.amount() + "\n";
+            ret +=  step.display() + "\n";
         }
         return ret;
     }

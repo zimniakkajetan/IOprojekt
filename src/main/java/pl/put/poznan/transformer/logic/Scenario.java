@@ -1,6 +1,8 @@
 package pl.put.poznan.transformer.logic;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,14 +21,14 @@ public class Scenario extends IStep {
     public String display() {
         String ret = "";
         for(IStep step : substeps){
-            ret += IStep.tab() + step.amount() + "\n";
+            ret += IStep.tab() + step.display() + "\n";
         }
         return ret;
     }
 
     @Override
     public List<IStep> getSubsteps() {
-        return null;
+        return substeps;
     }
 
     @Override
@@ -56,6 +58,12 @@ public class Scenario extends IStep {
         substeps = new LinkedList<>();
     }
     Scenario(List<String> scenario){
+        substeps = new LinkedList<>();
+        generate(scenario);
+    }
+    Scenario(String[] preScenario){
+        List<String> scenario = Arrays.asList(preScenario);
+        substeps = new LinkedList<>();
         generate(scenario);
     }
 }

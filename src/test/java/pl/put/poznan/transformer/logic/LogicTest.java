@@ -15,9 +15,9 @@ public class LogicTest {
         String expected = "unknownrequest";
         String response;
 
-        response = IRequest.getRequest("",scenario).getName();
+        response = IRequest.getRequest("",new Scenario(scenario)).getName();
         Assert.assertEquals(expected,response);
-        response = IRequest.getRequest("something",scenario).getName();
+        response = IRequest.getRequest("something",new Scenario(scenario)).getName();
         Assert.assertEquals(expected,response);
     }
 
@@ -29,7 +29,7 @@ public class LogicTest {
         String response, expected;
 
         expected = new NoRequest(requestName).getName();
-        response = IRequest.getRequest(requestName,scenario).getName();
+        response = IRequest.getRequest(requestName,new Scenario(scenario)).getName();
         Assert.assertEquals(expected,response);
     }
 

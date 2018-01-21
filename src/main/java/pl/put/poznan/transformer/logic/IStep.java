@@ -18,10 +18,14 @@ public abstract class IStep {
     void generate(List<String> scenario){
         List<String> sublist = null;
         String overstepName = null;
+        if(scenario == null){
+            return;
+        }
         for(String stepName : scenario){
             if(stepName.charAt(0)!=IStep.tab()){
                 if(sublist != null){
-                    getSubsteps().add(new Step(sublist, overstepName, this.depth() + 1));
+                    IStep tmp = new Step(sublist, overstepName, this.depth() + 1);
+                    getSubsteps().add(tmp);
                 }
                 overstepName = stepName;
                 sublist = new LinkedList<>();
@@ -34,6 +38,6 @@ public abstract class IStep {
                 sublist.add(stepName.substring(1));
             }
         }
-        getSubsteps().add(new Step(sublist, overstepName, this.depth() + 1));
+        if(overstepName!=null || sublist!=null)getSubsteps().add(new Step(sublist, overstepName, this.depth() + 1));
     }
 }

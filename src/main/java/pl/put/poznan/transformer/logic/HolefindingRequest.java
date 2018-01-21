@@ -4,13 +4,13 @@ package pl.put.poznan.transformer.logic;
  * This class is returned by IRequest.getRequest when
  * the the client requests amount of steps sent.
  */
-public class CountStepsRequest implements IRequest{
+public class HolefindingRequest implements IRequest{
     /**
      * Returns name of request that this class is fulfilling
      * @return String: "policzkroki"
      */
     public String getName() {
-        return "policzkroki";
+        return "poprawnosc";
     }
     /**
      * Returns answer of server when client wants to get amount of steps sent.
@@ -19,8 +19,11 @@ public class CountStepsRequest implements IRequest{
      */
     @Override
     public String run(IStep input) {
-        CountingVisitor cv = new CountingVisitor();
-        input.accept(cv);
-        return "\"" + "Ilosc krokow jest rowna " + Integer.toString(cv.getNumber()) + "\"";
+        HolefindingVisitor v = new HolefindingVisitor();
+        input.accept(v);
+        if(v.getLegitness()){
+            return "\"Poprawny scenariusz\"";
+        }
+        return "\"Niepoprawny scenariusz\"";
     }
 }

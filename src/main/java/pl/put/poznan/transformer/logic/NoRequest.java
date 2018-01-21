@@ -20,7 +20,7 @@ public class NoRequest implements IRequest {
      * @return JSON formatted response
      */
     @Override
-    public String run(String[] input) {
+    public String run(IStep input) {
         return "\"Method not found for request " + requestname + "\"";
     }
     private String requestname;
